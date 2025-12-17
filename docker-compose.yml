@@ -1,0 +1,63 @@
+services:
+  # 1. Aplikasi Laravel (PHP)
+  app:
+    build: .
+    image: jawaracode/citizen-core:latest
+    container_name: citizen_report-app
+    volumes:
+      - .:/var/www
+    depends_on:
+      - db
+    networks:
+      - citizen-network
+
+  # 2. Web Server (Nginx)
+  web:
+    image: nginx:alpine
+    container_name: citizen_report-web
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - app
+    networks:
+      - citizen-network
+
+  # 3. Database (PostgreSQL)
+  db:
+    image: mysql:8.0
+    container_name: citizen_report-db
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - citizen-network
+
+  # 4. GUI Admin (phpMyAdmin)
+  pma:
+    image: phpmyadmin/phpmyadmin
+    container_name: citizen_report-pma
+    environment:
+      PMA_HOST: db
+      PMA_USER: ${DB_USERNAME}
+      PMA_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "8086:80"
+    depends_on:
+      - db
+    networks:
+      - citizen-network
+
+networks:
+  citizen-network:
+    driver: bridge
+
+volumes:
+  db-data:
