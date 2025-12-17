@@ -12,7 +12,7 @@
         <h1 class="text-4xl font-bold text-center mb-8 text-blue-600">📢 SUARA WARGA</h1>
 
         <div class="bg-white p-6 rounded-lg shadow-md mb-10">
-            <h2 class="text-xl font-bold mb-4">Buat Laporan Baru</h2>
+            <h2 class="text-xl font-bold mb-4">Buat Laporan Baru v2</h2>
             <form action="{{ route('reports.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
                 @csrf
                 <input type="text" name="reporter_name" placeholder="Nama Anda" class="w-full p-2 border rounded" required>
