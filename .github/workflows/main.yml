@@ -51,7 +51,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: jawaracode/laravel-citizen-reporting:latest
+          tags: |
+            jawaracode/laravel-citizen-reporting:latest
+            jawaracode/laravel-citizen-reporting:${{ github.ref_name }}
 
   deploy:
     needs: build-push
