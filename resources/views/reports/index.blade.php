@@ -9,7 +9,7 @@
 <body class="bg-gray-100 min-h-screen p-6">
 
     <div class="max-w-2xl mx-auto">
-        <h1 class="text-4xl font-bold text-center mb-8 text-blue-600">📢 SUARA WARGA</h1>
+        <h1 class="text-4xl font-bold text-center mb-8 text-blue-600">📢 SUARA WARGA Perubahan</h1>
 
         <div class="bg-white p-6 rounded-lg shadow-md mb-10">
             <h2 class="text-xl font-bold mb-4">Buat Laporan Baru v2</h2>
