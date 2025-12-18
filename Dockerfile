@@ -30,5 +30,8 @@ WORKDIR /var/www
 # Copy code
 COPY . .
 
+# Tambahan Install Dependencies Laravel
+RUN composer install --optimize-autoloader --no-dev
+
 # Ownership setup
-RUN chown -R www-data:www-data /var/www
+RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
